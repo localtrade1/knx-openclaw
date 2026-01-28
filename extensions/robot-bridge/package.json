@@ -1,0 +1,9 @@
+{
+  "name": "@clawdbot/robot-bridge",
+  "version": "2026.1.24",
+  "type": "module",
+  "description": "Stub tools for robot telemetry and motion (on-robot OpenClaw gateway)",
+  "clawdbot": {
+    "extensions": ["./index.ts"]
+  }
+}
