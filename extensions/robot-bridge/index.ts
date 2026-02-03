@@ -2,10 +2,7 @@ import { Type } from "@sinclair/typebox";
 import type { ClawdbotPluginApi } from "clawdbot/plugin-sdk";
 import { emptyPluginConfigSchema } from "clawdbot/plugin-sdk";
 
-function socketPath(): string | undefined {
-  const raw = process.env.ROBOT_BRIDGE_SOCKET?.trim();
-  return raw && raw.length > 0 ? raw : undefined;
-}
+import { bridgeSocketPath } from "./src/socket-client.js";
 
 const plugin = {
   id: "robot-bridge",
@@ -19,7 +16,7 @@ const plugin = {
       description: "Returns stub telemetry JSON for the robot bridge.",
       parameters: Type.Object({}, { additionalProperties: false }),
       execute: async () => {
-        const sock = socketPath();
+        const sock = bridgeSocketPath();
         const payload = sock
           ? { ok: true, mode: "stub", socket: sock }
           : { ok: false, error: "robot_bridge_unconfigured" };
@@ -39,7 +36,7 @@ const plugin = {
         { additionalProperties: false },
       ),
       execute: async (_id, params: { vx?: number; wz?: number }) => {
-        if (!socketPath()) {
+        if (!bridgeSocketPath()) {
           return {
             content: [
               {
