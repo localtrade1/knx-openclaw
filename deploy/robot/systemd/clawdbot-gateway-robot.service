@@ -1,0 +1,17 @@
+[Unit]
+Description=Clawdbot Gateway (robot payload)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=clawdbot
+Group=clawdbot
+WorkingDirectory=/opt/clawdbot
+EnvironmentFile=-/etc/clawdbot/robot.env
+ExecStart=/usr/bin/clawdbot gateway --bind lan --port 18789
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
