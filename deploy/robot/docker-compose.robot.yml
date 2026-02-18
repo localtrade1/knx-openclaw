@@ -1,0 +1,22 @@
+services:
+  clawdbot-gateway:
+    image: ${CLAWDBOT_IMAGE:-clawdbot:local}
+    network_mode: host
+    environment:
+      HOME: /home/node
+      ROBOT_BRIDGE_SOCKET: ${ROBOT_BRIDGE_SOCKET:-/run/robot-bridge.sock}
+    volumes:
+      - clawdbot-data:/data
+    command:
+      [
+        "node",
+        "dist/index.js",
+        "gateway",
+        "--bind",
+        "lan",
+        "--port",
+        "18789",
+      ]
+
+volumes:
+  clawdbot-data:
