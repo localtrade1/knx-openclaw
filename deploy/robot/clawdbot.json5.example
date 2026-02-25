@@ -1,0 +1,12 @@
+{
+  plugins: {
+    load: {
+      paths: ["../../extensions/robot-bridge/index.ts"],
+    },
+    allow: ["robot-bridge"],
+  },
+  gateway: {
+    bind: "lan",
+    port: 18789,
+  },
+}
