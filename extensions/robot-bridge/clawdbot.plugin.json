@@ -1,0 +1,10 @@
+{
+  "id": "robot-bridge",
+  "name": "Robot bridge",
+  "description": "Stub tools for on-robot telemetry and motion.",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {}
+  }
+}
